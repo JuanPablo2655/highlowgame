@@ -38,11 +38,12 @@ fn main() {
         io::stdin()
             .read_line(&mut decision)
             .expect("Failed to read line");
+        let decision = decision.trim();
         if decision == "n" || decision == "N" {
             break;
         }
     }
 
-    print!("Wins: {}", wins);
-    print!("Loses: {}", loses);
+    println!("Wins: {}", wins);
+    println!("Loses: {}", loses);
 }
