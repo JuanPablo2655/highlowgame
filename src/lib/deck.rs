@@ -1,7 +1,7 @@
 use rand::Rng;
-use crate::card::Card;
+use crate::lib::card::Card;
 
-struct Deck;
+pub struct Deck;
 
 
 impl Deck {
