@@ -38,7 +38,7 @@ fn main() {
         io::stdin()
             .read_line(&mut decision)
             .expect("Failed to read line");
-        if decision == "y" || decision == "Y" {
+        if decision == "n" || decision == "N" {
             break;
         }
     }
