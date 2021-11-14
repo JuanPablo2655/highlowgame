@@ -12,17 +12,17 @@ impl Card {
         &self.value
     }
 
-    pub fn get_suit(&self) -> &str {
-        &self.suit
-    }
+    // pub fn get_suit(&self) -> &str {
+    //     &self.suit
+    // }
 
-    pub fn declare_card(&self) -> &str {
+    pub fn declare_card(&self) -> String {
         let value = match &self.value {
-            11 => "Jack",
-            12 => "Queen",
-            13 => "King",
-            1 => "Ace",
-            _ => &self.value.to_string(),
+            11 => "Jack".to_string(),
+            12 => "Queen".to_string(),
+            13 => "King".to_string(),
+            1 => "Ace".to_string(),
+            _ => self.value.to_string(),
         };
         format!("the {} of {}", value, &self.suit)
     }
