@@ -6,15 +6,17 @@ fn main() {
     let deck = Deck;
     let mut wins = 0;
     let mut loses = 0;
-    
+
     loop {
         let card1 = deck.draw_card();
         println!("The first card is {}", card1.declare_card());
         println!("Will the next card be higher or lower?");
-        println!("Enter 1 for lower, 2 for higher.");   
+        println!("Enter 1 for lower, 2 for higher.");
 
         let mut choice = String::new();
-        io::stdin().read_line(&mut choice).expect("Failed to read line");
+        io::stdin()
+            .read_line(&mut choice)
+            .expect("Failed to read line");
         let choice: u8 = choice.trim().parse().expect("Please type a number");
         let card2 = deck.draw_card();
         println!("The next card is the {}", card2.declare_card());
@@ -30,10 +32,12 @@ fn main() {
             loses += 1;
             println!("Sorry, your guess was incorrect :(");
         }
-        
+
         let mut decision = String::new();
         println!("Play again? [y]es or [n]o");
-        io::stdin().read_line(&mut decision).expect("Failed to read line");
+        io::stdin()
+            .read_line(&mut decision)
+            .expect("Failed to read line");
         if decision == "y" || decision == "Y" {
             break;
         }
@@ -41,5 +45,4 @@ fn main() {
 
     print!("Wins: {}", wins);
     print!("Loses: {}", loses);
-
 }
