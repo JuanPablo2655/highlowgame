@@ -40,4 +40,7 @@ fn main() {
         }
     }
 
+    print!("Wins: {}", wins);
+    print!("Loses: {}", loses);
+
 }
