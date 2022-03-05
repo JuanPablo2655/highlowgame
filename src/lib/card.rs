@@ -1,10 +1,36 @@
+#[derive(Copy, Clone, Debug, PartialEq)]
+pub enum Suit {
+    Spades,
+    Clubs,
+    Hearts,
+    Diamonds,
+}
+
+impl Suit {
+    pub fn all() -> Vec<Self> {
+        vec![Self::Spades, Self::Clubs, Self::Hearts, Self::Diamonds]
+    }
+}
+
+impl ToString for Suit {
+    fn to_string(&self) -> String {
+        match self {
+            Self::Clubs => "Clubs",
+            Self::Spades => "Spades",
+            Self::Hearts => "Hearts",
+            Self::Diamonds => "Diamonds",
+        }
+        .to_string()
+    }
+}
+
 pub struct Card {
     value: u8,
-    suit: String,
+    suit: Suit,
 }
 
 impl Card {
-    pub fn new(value: u8, suit: String) -> Self {
+    pub fn new(value: u8, suit: Suit) -> Self {
         Self { value, suit }
     }
 
@@ -17,13 +43,14 @@ impl Card {
     // }
 
     pub fn declare_card(&self) -> String {
-        let value = match &self.value {
-            11 => "Jack".to_string(),
-            12 => "Queen".to_string(),
-            13 => "King".to_string(),
-            1 => "Ace".to_string(),
-            _ => self.value.to_string(),
+        let named_value = match &self.value {
+            11 => Some("Jack"),
+            12 => Some("Queen"),
+            13 => Some("King"),
+            1 => Some("Ace"),
+            _ => None,
         };
-        format!("the {} of {}", value, &self.suit)
+        let value = named_value.unwrap_or(&self.value.to_string()).to_string();
+        format!("the {} of {}", value, self.suit.to_string())
     }
 }
