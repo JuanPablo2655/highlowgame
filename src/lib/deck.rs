@@ -1,4 +1,5 @@
-use crate::lib::card::Card;
+use crate::lib::card::*;
+use rand::seq::SliceRandom;
 use rand::Rng;
 
 pub struct Deck;
@@ -6,9 +7,10 @@ pub struct Deck;
 impl Deck {
     pub fn draw_card(&self) -> Card {
         let random_value: u8 = rand::thread_rng().gen_range(1..14);
-        let random_suit = rand::thread_rng().gen_range(1..5);
-        let suit_value = ["Spades", "Clubs", "Hearts", "Diamonds"];
+        let mut rng = rand::thread_rng();
+        let suits = Suit::all();
+        let suit = suits.choose(&mut rng).unwrap();
 
-        Card::new(random_value, suit_value[random_suit - 1].to_string())
+        Card::new(random_value, *suit)
     }
 }
