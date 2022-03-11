@@ -27,21 +27,24 @@ impl Deck {
     }
 }
 
-#[test]
-fn test_deck_from_cards() {
-    let mut deck = Deck::from_cards(&[Card::new(1, Suit::Spades), Card::new(2, Suit::Diamonds)]);
-
-    assert_eq!(deck.draw_card().unwrap(), Some(Card::new(1, Suit::Spades)));
-    assert_eq!(
-        deck.draw_card().unwrap(),
-        Some(Card::new(2, Suit::Diamonds))
-    );
-    assert_eq!(deck.draw_card().unwrap(), None);
-}
-
-#[test]
-fn test_deck() {
-    let mut deck = Deck::new();
-    // the two same cards cannot be drawn
-    assert_ne!(deck.draw_card(), deck.draw_card());
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_deck_from_cards() {
+        let mut deck =
+            Deck::from_cards(&[Card::new(1, Suit::Spades), Card::new(2, Suit::Diamonds)]);
+        assert_eq!(deck.draw_card().unwrap(), Some(Card::new(1, Suit::Spades)));
+        assert_eq!(
+            deck.draw_card().unwrap(),
+            Some(Card::new(2, Suit::Diamonds))
+        );
+        assert_eq!(deck.draw_card().unwrap(), None);
+    }
+    #[test]
+    fn test_deck() {
+        let mut deck = Deck::new();
+        // the two same cards cannot be drawn
+        assert_ne!(deck.draw_card().unwrap(), deck.draw_card().unwrap());
+    }
 }
