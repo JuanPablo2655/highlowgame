@@ -1,29 +1,28 @@
 use crate::lib::card::*;
+use std::collections::VecDeque;
 
 pub struct Deck {
-    cards: Vec<Card>,
+    cards: VecDeque<Card>,
 }
 
 impl Deck {
     pub fn new() -> Self {
-        let mut cards = Vec::new();
+        let mut cards = VecDeque::new();
         for value in 1..=13 {
             for suit in Suit::all() {
-                cards.push(Card::new(value, suit))
+                cards.push_back(Card::new(value, suit))
             }
         }
         Self { cards }
     }
 
     fn from_cards(cards: &[Card]) -> Self {
-        let cards = cards.to_vec();
+        let cards = VecDeque::from(cards.to_vec());
         Self { cards }
     }
 
     pub fn draw_card(&mut self) -> Option<Card> {
-        let card = self.cards.first().cloned();
-        self.cards.remove(0);
-        card
+        self.cards.pop_front()
     }
 }
 
