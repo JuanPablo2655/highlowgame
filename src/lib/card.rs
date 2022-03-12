@@ -24,6 +24,7 @@ impl ToString for Suit {
     }
 }
 
+#[derive(Copy, Clone, Debug, PartialEq)]
 pub struct Card {
     value: u8,
     suit: Suit,

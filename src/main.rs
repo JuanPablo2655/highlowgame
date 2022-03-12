@@ -3,12 +3,12 @@ mod lib;
 use lib::deck::Deck;
 
 fn main() {
-    let deck = Deck;
+    let mut deck = Deck::new();
     let mut wins = 0;
     let mut loses = 0;
 
     loop {
-        let card1 = deck.draw_card();
+        let card1 = deck.draw_card().unwrap();
         println!("The first card is {}", card1.declare_card());
         println!("Will the next card be higher or lower?");
         println!("Enter 1 for lower, 2 for higher.");
@@ -18,7 +18,7 @@ fn main() {
             .read_line(&mut choice)
             .expect("Failed to read line");
         let choice: u8 = choice.trim().parse().expect("Please type a number");
-        let card2 = deck.draw_card();
+        let card2 = deck.draw_card().unwrap();
         println!("The next card is the {}", card2.declare_card());
         let value1 = card1.get_value();
         let value2 = card2.get_value();
