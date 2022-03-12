@@ -17,7 +17,7 @@ impl Deck {
     }
 
     fn from_cards(cards: &[Card]) -> Self {
-        let cards = VecDeque::from(cards.to_vec());
+        let cards = cards.iter().cloned().collect();
         Self { cards }
     }
 
